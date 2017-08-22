@@ -4,8 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
+// set database connection
 var mongoose = require('mongoose');
-var db_url = "mongodb://localhost:27017/TODOs";
+var db_name = "TODOs";
+var db_url = "mongodb://localhost:27017/"+db_name;
 mongoose.connect(db_url, {useMongoClient: true});
 var db_conn = mongoose.connection;
 db_conn.on('error', console.error.bind(console, 'connection error:'));
