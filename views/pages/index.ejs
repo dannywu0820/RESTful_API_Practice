@@ -7,9 +7,14 @@
 	<% include ../partials/header %>
   
     <p>
-	Welcome to <%= title %>
+	Welcome to <%= title %>, <%= username%>
 	</p>
-	<a href="/login/logout">Logout</a>
+	
+	<% if (isLogin){ %>
+		<a href="/login/logout">logout</a>
+	<% } else { %>
+		Please <a href="/login">login</a>
+	<% } %>
 	
 	<% include ../partials/footer %>
   </body>

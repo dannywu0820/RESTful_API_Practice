@@ -32,6 +32,7 @@ router.post('/', function(req, res, next){
 						message: "Login Successfully",
 						results: results[0]
 					});*/
+					res.cookie('account', account, {path: '/', signed: true, maxAge:1*60*1000});
 					res.redirect('http://140.113.207.48:8080/');
 				}
 				else{
@@ -88,6 +89,7 @@ router.post('/register', function(req, res, next){
 						password: password
 					}
 				});*/
+				res.cookie('account', account, {path: '/', signed: true, maxAge:1*60*1000});
 				res.redirect('http://140.113.207.48:8080/');
 			}
 			else{
@@ -103,6 +105,7 @@ router.post('/register', function(req, res, next){
 });
 
 router.get('/logout', function(req, res, next){
+	res.clearCookie('account', {path: '/'});
 	res.redirect('http://140.113.207.48:8080/login');
 });
 
