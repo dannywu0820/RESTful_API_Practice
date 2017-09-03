@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<% include ../partials/head %>
+	</head>
+	<body>
+		<% include ../partials/header %>
+	
+		<main>
+		<div>
+			<form action="login/" method="post">
+				<h2>Login</h2>
+				<input id="account" name="account" type="text" placeholder="Account"><br>
+				<input id="password" name="password" type="password" placeholder="Password"><br>
+				<button id="login" type="submit">Login</button>
+			</form>
+			
+			<form action="login/register" method="post">
+				<h2>Register</h2>
+				<input id="account" name="account" type="text" placeholder="account"><br>
+				<input id="password" name="password" type="password" placeholder="password"><br>
+				<input id="reconfirm" name="reconfirm" type="password" placeholder="reconfirm password"><br>
+				<button id="register" type="submit">Register</button>
+			</form>
+		</div>
+		</main>
+	
+		<% include ../partials/footer %>
+	</body>
+</html>

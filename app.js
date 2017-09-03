@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 // set database connection
 var mongoose = require('mongoose');
-var db_name = "TODOs";
+var db_name = "RESTful_API_Practice";
 var db_url = "mongodb://localhost:27017/"+db_name;
 mongoose.connect(db_url, {useMongoClient: true});
 var db_conn = mongoose.connection;
@@ -16,6 +16,7 @@ db_conn.on('error', console.error.bind(console, 'connection error:'));
 // set routers
 var index = require('./routes/index');
 var users = require('./routes/users');
+var login = require('./routes/login');
 
 var app = express();
 
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // use routers
 app.use('/', index);
 app.use('/users', users);
+app.use('/login', login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
