@@ -103,7 +103,6 @@ router.post('/register', function(req, res, next){
 });
 
 router.get('/logout', function(req, res, next){
-	//req.session.destroy();
 	res.redirect('http://140.113.207.48:8080/login');
 });
 
