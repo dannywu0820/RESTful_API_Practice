@@ -8,14 +8,18 @@
 	
 		<main>
 		<div>
-			<form action="login/" method="post">
+			<form method="post">
 				<h2>Login</h2>
 				<input id="account" name="account" type="text" placeholder="Account"><br>
 				<input id="password" name="password" type="password" placeholder="Password"><br>
 				<button id="login" type="submit">Login</button>
+				
+				<% if (locals.login_error){ %>
+					<p> <%= locals.login_error %> </p>
+				<% } %>
 			</form>
 			
-			<form action="login/register" method="post">
+			<form action="register" method="post">
 				<h2>Register</h2>
 				<input id="account" name="account" type="text" placeholder="account"><br>
 				<input id="password" name="password" type="password" placeholder="password"><br>

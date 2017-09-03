@@ -12,9 +12,46 @@ router.get('/', function(req, res, next){
 });
 
 router.post('/', function(req, res, next){
-	res.status(200).json({
-		action: "login"
-	});
+	var account = req.body['account'];
+	var password = req.body['password'];
+	
+	if(account == "" || password == ""){
+		res.locals.login_error = "Blank Account or Password";
+		res.render('pages/login',{
+			title: 'Express', 
+			project: 'RESTful_API_Practice'
+		});
+	}
+	else{
+		password = crypto.createHash('md5').update(password).digest('hex');
+		
+		users.find({account: account, password: password}, function(error, results){
+			if(!error){
+				if(results.length >= 1){
+					/*res.status(200).json({
+						message: "Login Successfully",
+						results: results[0]
+					});*/
+					res.redirect('http://140.113.207.48:8080/');
+				}
+				else{
+					res.locals.login_error = "Wrong Account or Password";
+					res.render('pages/login',{
+						title: 'Express', 
+						project: 'RESTful_API_Practice'
+					});
+				}
+			}
+			else{
+				res.render('error', {
+					message: "MongoDB Error",
+					error: {
+						status: 500
+					}
+				});
+			}
+		});
+	}
 });
 
 router.post('/register', function(req, res, next){
