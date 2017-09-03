@@ -60,19 +60,17 @@ router.post('/register', function(req, res, next){
 	var reconfirm = req.body['reconfirm'];
 	
 	if(account == "" || password == "" || reconfirm == ""){
-		res.render('error', {
-			message: "Blank Not Allowed",
-			error: {
-				status: 500
-			}
+		res.locals.register_error = "Blank Account or Password";
+		res.render('pages/login',{
+			title: 'Express', 
+			project: 'RESTful_API_Practice'
 		});
 	}
 	else if(password != reconfirm){
-		res.render('error', {
-			message: "Reconfirm Wrong",
-			error: {
-				status: 500
-			}
+		res.locals.register_error = "Wrong Reconfirm Password";
+		res.render('pages/login',{
+			title: 'Express', 
+			project: 'RESTful_API_Practice'
 		});
 	}
 	else{
@@ -105,7 +103,8 @@ router.post('/register', function(req, res, next){
 });
 
 router.get('/logout', function(req, res, next){
-	
+	//req.session.destroy();
+	res.redirect('http://140.113.207.48:8080/login');
 });
 
 module.exports = router;
